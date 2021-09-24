@@ -1,0 +1,14 @@
+.container{
+    width: 600px;
+    height: 600px;
+    background-color: violet;
+    border: 1px solid blue;
+    font-size: 0;
+}
+
+.cell{
+    outline: 1px solid black;
+    background-color: coral;
+    display: inline-block;
+}
+
