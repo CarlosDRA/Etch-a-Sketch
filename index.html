@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/stylesheets/css/normalize.css">
     <link rel="stylesheet" href="./assets/stylesheets/css/main.css">
 
@@ -13,9 +17,24 @@
 <body>
     <main>
         <h1>Etch-A-Sketch</h1>
-        <aside>This is an aside tag</aside>
-        <section>
-            <div class="container"></div>
+        <section class="workspace">
+            <aside class="menu">
+                <button id="clear">Clear canvas</button>
+                <button id="eraser">Eraser</button>
+                <button id="rainbow">Rainbow color: off</button>
+                <button id="shade">Shading</button>
+                <button id="light">Lighting</button>
+                
+                <label for="color-picker">Pick a color</label>
+                <input type="color" id="color-picker" name="color-picker" value="#000000">
+    
+                <label for="grid-selector">Select a canvas size</label>
+                <input type="range" id="grid-selector" name="grid-selector" min="2" max="100" value="16">
+                <p id="canvas-grid">16x16</p>
+            </aside>
+            <section>
+                <div class="container"></div>
+            </section>
         </section>
     </main>
     <script src="/assets/script/main.js"></script>
