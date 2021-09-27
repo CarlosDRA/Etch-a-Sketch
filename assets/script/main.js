@@ -35,11 +35,17 @@ function grid(rows, cols){
         canvas.appendChild(cell).className = "cell";
         cell.style.width = `${canvas.clientWidth/cols}px`;
         cell.style.height = `${canvas.clientHeight/rows}px`;
+        cell.style.backgroundColor = "#fff";
     }
 }
 
 function paint(e){
-    e.target.style["background-color"] = color.value;
+    
+    if(eraserBtn.value == "off" && rainbowBtn.value == "off" 
+    && shadeBtn.value == "off" && lightBtn.value == "off"){
+        e.target.style["background-color"] = color.value;
+    }
+
 
     if(eraserBtn.value === "on"){
         e.target.style["background-color"] = "#fff";
@@ -50,16 +56,71 @@ function paint(e){
     }
 
     if(shadeBtn.value === "on"){
-        e.target.style["background-color"] = "hsl(180, 100%, 10%)";
+        shading(e);
     }
 
     if(lightBtn.value === "on"){
-        e.target.style["background-color"] = "hsl(180, 100%, 80%)"
+        lighting(e);
     }
 }
 
 function clearCell(e){
     e.target.style["background-color"] = "#fff";
+}
+
+function shading(e){
+    let rgb = getRGB(e.target.style.backgroundColor);
+    let color = RGBtoHSL(rgb[0], rgb[1], rgb[2])
+    console.log(color)
+}
+
+function lighting(e){
+    let rgb = getRGB(e.target.style.backgroundColor);
+    let color = RGBtoHSL(rgb[0], rgb[1], rgb[2])
+    console.log(color)
+}
+
+function getRGB(rgb){
+    let value = rgb.slice(4).replace(")","").replaceAll(" ","").split(",")
+    return value
+}
+
+function RGBtoHSL(r, g, b){
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    let cmin = Math.min(r,g,b),
+    cmax = Math.max(r,g,b),
+    delta = cmax - cmin,
+    h = 0,
+    s = 0,
+    l = 0;
+
+    if (delta == 0){
+        h = 0;
+    } else if (cmax == r){
+        h = ((g - b) / delta) % 6;
+    } else if (cmax == g){
+        h = (b - r) / delta + 2;
+    } else{
+        h = (r - g) / delta + 4;
+    }
+
+    h = Math.round(h * 60);
+  
+    if (h < 0){
+        h += 360;
+    }
+
+    l = (cmax + cmin) / 2;
+
+    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      
+    s = +(s * 100).toFixed(1);
+    l = +(l * 100).toFixed(1);
+  
+    return "hsl(" + h + "," + s + "%," + l + "%)";
 }
 
 function toggle(e){
