@@ -11,7 +11,10 @@ const lightBtn = document.getElementById("light");
 
 //selectors
 const canvasGrid = document.getElementById("grid-selector");
+let gridSize = 16;
+const gridText = document.getElementById("canvas-grid");
 const color = document.getElementById("color-picker");
+
 
 eraserBtn.addEventListener("click", toggle);
 rainbowBtn.addEventListener("click", toggle);
@@ -19,21 +22,33 @@ shadeBtn.addEventListener("click", toggle);
 lightBtn.addEventListener("click", toggle);
 
 
-grid(16,16);
-const cell = document.querySelectorAll(".cell");
-cell.forEach(item => item.addEventListener("mouseover", paint))
+grid();
 
-clearBtn.addEventListener("click", () =>{
-    cell.forEach(item => item.style["background-color"] = "#fff");
+
+canvasGrid.addEventListener("input", e =>{
+    gridText.innerText = `${e.target.value}x${e.target.value}`;
+    gridSize = parseInt(e.target.value);
+    changeGrid();
 })
 
+function changeGrid(){
+    clearGrid();
+    grid();
+}
 
-function grid(rows, cols){
-    for(let i = 0; i < (rows * cols); i++){
+const cell = document.querySelectorAll(".cell");
+
+function clearGrid(){
+    canvas.innerHTML = "";
+} 
+
+function grid(){
+    for(let i = 0; i < (gridSize * gridSize); i++){
         let cell = document.createElement("div");
+        cell.addEventListener("mouseover", paint);
         canvas.appendChild(cell).className = "cell";
-        cell.style.width = `${canvas.clientWidth/cols}px`;
-        cell.style.height = `${canvas.clientHeight/rows}px`;
+        cell.style.width = `${canvas.clientWidth/gridSize}px`;
+        cell.style.height = `${canvas.clientHeight/gridSize}px`;
         cell.style.backgroundColor = "#fff";
     }
 }
@@ -44,28 +59,30 @@ function paint(e){
     && shadeBtn.value == "off" && lightBtn.value == "off"){
         e.target.style["background-color"] = color.value;
     }
-
-
+    
+    
     if(eraserBtn.value === "on"){
         e.target.style["background-color"] = "#fff";
     }
-
+    
     if(rainbowBtn.value === "on"){
         e.target.style["background-color"] = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
     }
-
+    
     if(shadeBtn.value === "on"){
         shading(e);
     }
-
+    
     if(lightBtn.value === "on"){
         lighting(e);
     }
 }
 
-function clearCell(e){
-    e.target.style["background-color"] = "#fff";
-}
+clearBtn.addEventListener("click", () =>{
+    let squares = document.querySelectorAll(".cell")
+    squares.forEach(item => item.style["background-color"] = "#fff");
+})
+
 
 function shading(e){
     let rgb = getRGB(e.target.style.backgroundColor);

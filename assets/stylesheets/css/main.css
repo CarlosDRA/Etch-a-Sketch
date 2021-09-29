@@ -19,12 +19,12 @@ h1 {
   width: 600px;
   height: 600px;
   background-color: violet;
-  border: 1px solid blue;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
   font-size: 0;
 }
 
 .cell {
-  outline: 1px solid rgba(0, 0, 0, 0.5);
+  outline: 1px solid rgba(0, 0, 0, 0.05);
   display: inline-block;
 }
 
