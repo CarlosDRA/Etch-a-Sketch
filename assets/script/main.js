@@ -28,7 +28,6 @@ clearBtn.addEventListener("click", () =>{
 })
 
 
-
 function grid(rows, cols){
     for(let i = 0; i < (rows * cols); i++){
         let cell = document.createElement("div");
@@ -71,13 +70,22 @@ function clearCell(e){
 function shading(e){
     let rgb = getRGB(e.target.style.backgroundColor);
     let color = RGBtoHSL(rgb[0], rgb[1], rgb[2])
-    console.log(color)
+    let colorArr = HSLtoArray(color)
+    let newColor = `hsl(${colorArr[0]},${colorArr[1]},${parseFloat(colorArr[2]) - 5}%)`;
+    e.target.style["background-color"] = newColor;
 }
 
 function lighting(e){
     let rgb = getRGB(e.target.style.backgroundColor);
     let color = RGBtoHSL(rgb[0], rgb[1], rgb[2])
-    console.log(color)
+    let colorArr = HSLtoArray(color)
+    let newColor = `hsl(${colorArr[0]},${colorArr[1]},${parseFloat(colorArr[2]) + 5}%)`;
+    e.target.style["background-color"] = newColor;
+}
+
+function HSLtoArray(color){
+    let value = color.slice(4).replace(")","").split(",");
+    return value;
 }
 
 function getRGB(rgb){
