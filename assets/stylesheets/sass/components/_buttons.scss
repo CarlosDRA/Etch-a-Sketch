@@ -1,4 +1,29 @@
+@use "../Abstracts/colors" as c;
+
+.button{
+    width: 40%;
+    height: 40px;
+    margin: 5px auto;
+    border-radius: 10px;
+    background-color: c.$dark-gray;
+    border: solid 1px c.$white;
+    color: c.$white;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
 .on{
-    background-color: lightcoral;
-    color: white;  
+    background-color: c.$active;
+    border-color: c.$active-border;
+}
+
+#color-picker{
+    width: 40%;
+    height: 40px;
+    padding: 0;
+    margin: 5px auto;
+    border-radius: 10px;
+    background: c.$white;
 }

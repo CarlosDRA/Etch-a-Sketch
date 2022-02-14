@@ -25,6 +25,8 @@ let isMouseDown = false;
 document.body.onmousedown = () => isMouseDown = true;
 document.body.onmouseup = () => isMouseDown = false;
 
+const backgroundColor = "#F2F2F2";
+
 
 createGrid();
 
@@ -54,7 +56,7 @@ function createGrid(){
         canvas.appendChild(cell).className = "cell";
         cell.style.width = `${canvas.clientWidth/gridSize}px`;
         cell.style.height = `${canvas.clientHeight/gridSize}px`;
-        cell.style.backgroundColor = "#fff";
+        cell.style.backgroundColor = backgroundColor;
     }
 }
 
@@ -71,7 +73,7 @@ function paint(e){
     
     if(eraserBtn.value === "on"){
         if(e.buttons === 1){
-            e.target.style["background-color"] = "#fff";
+            e.target.style["background-color"] = backgroundColor;
         }
     }
     
@@ -96,7 +98,7 @@ function paint(e){
 
 clearBtn.addEventListener("click", () =>{
     let squares = document.querySelectorAll(".cell")
-    squares.forEach(item => item.style["background-color"] = "#fff");
+    squares.forEach(item => item.style["background-color"] = backgroundColor);
 })
 
 
