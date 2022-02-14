@@ -59,6 +59,8 @@ function createGrid(){
 }
 
 function paint(e){
+    e.preventDefault();
+    
     if(e.type === "mouseover" && !isMouseDown) return;
 
     if(eraserBtn.value == "off" && rainbowBtn.value == "off" 
