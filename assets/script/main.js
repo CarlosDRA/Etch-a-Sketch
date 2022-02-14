@@ -21,8 +21,12 @@ rainbowBtn.addEventListener("click", toggle);
 shadeBtn.addEventListener("click", toggle);
 lightBtn.addEventListener("click", toggle);
 
+let isMouseDown = false;
+document.body.onmousedown = () => isMouseDown = true;
+document.body.onmouseup = () => isMouseDown = false;
 
-grid();
+
+createGrid();
 
 
 canvasGrid.addEventListener("input", e =>{
@@ -33,18 +37,19 @@ canvasGrid.addEventListener("input", e =>{
 
 function changeGrid(){
     clearGrid();
-    grid();
+    createGrid();
 }
-
-const cell = document.querySelectorAll(".cell");
 
 function clearGrid(){
     canvas.innerHTML = "";
 } 
 
-function grid(){
+//Initialize the grid
+
+function createGrid(){
     for(let i = 0; i < (gridSize * gridSize); i++){
         let cell = document.createElement("div");
+        cell.addEventListener("mousedown", paint);
         cell.addEventListener("mouseover", paint);
         canvas.appendChild(cell).className = "cell";
         cell.style.width = `${canvas.clientWidth/gridSize}px`;
@@ -54,7 +59,8 @@ function grid(){
 }
 
 function paint(e){
-    
+    if(e.type === "mouseover" && !isMouseDown) return;
+
     if(eraserBtn.value == "off" && rainbowBtn.value == "off" 
     && shadeBtn.value == "off" && lightBtn.value == "off"){
         e.target.style["background-color"] = color.value;
@@ -62,19 +68,27 @@ function paint(e){
     
     
     if(eraserBtn.value === "on"){
-        e.target.style["background-color"] = "#fff";
+        if(e.buttons === 1){
+            e.target.style["background-color"] = "#fff";
+        }
     }
     
     if(rainbowBtn.value === "on"){
-        e.target.style["background-color"] = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+        if(e.buttons === 1){
+            e.target.style["background-color"] = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+        }
     }
     
     if(shadeBtn.value === "on"){
-        shading(e);
+        if(e.buttons === 1){
+            shading(e);
+        }
     }
     
     if(lightBtn.value === "on"){
-        lighting(e);
+        if(e.buttons === 1){
+            lighting(e);
+        }
     }
 }
 
