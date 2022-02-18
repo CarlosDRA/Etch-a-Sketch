@@ -17,23 +17,24 @@
 <body>
     <main>
         <h1>Etch-A-Sketch</h1>
+
         <section class="workspace">
             <aside class="menu">
-                <button class="button" id="clear">Clear canvas</button>
-                <button class="button" id="eraser" value="off">Eraser</button>
-                <button class="button" id="rainbow" value="off">Random color</button>
-                <button class="button" id="shade" value="off">Shading</button>
-                <button class="button" id="light" value="off">Lighting</button>
-                
-                <label for="color-picker">Pick a color</label>
-                <input type="color" id="color-picker" name="color-picker" value="#000000">
-    
-                <label for="grid-selector">Select a canvas size</label>
-                <input type="range" id="grid-selector" name="grid-selector" min="2" max="32" value="16">
-                <p id="canvas-grid">16x16</p>
+                <div class="menu__container">
+                    <label for="grid-selector">Select a canvas size</label>
+                    <input type="range" id="grid-selector" name="grid-selector" min="2" max="32" value="16">
+                    <p id="canvas-grid">16x16</p>
+                    
+                    <input type="color" id="color-picker" name="color-picker" value="#000000">
+                    <button class="button" id="clear">Clear canvas</button>
+                    <button class="button" id="eraser" value="off">Eraser</button>
+                    <button class="button" id="rainbow" value="off">Random color</button>
+                    <button class="button" id="shade" value="off">Shading</button>
+                    <button class="button" id="light" value="off">Lighting</button>
+                </div>
             </aside>
-            <section>
-                <div class="container"></div>
+            <section class="canvas__container">
+                <div class="canvas"></div>
             </section>
         </section>
     </main>

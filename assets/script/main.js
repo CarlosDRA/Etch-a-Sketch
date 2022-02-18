@@ -1,6 +1,6 @@
 "use strict"
 
-const canvas = document.querySelector(".container");
+const canvas = document.querySelector(".canvas");
 
 //buttons
 const clearBtn = document.getElementById("clear");

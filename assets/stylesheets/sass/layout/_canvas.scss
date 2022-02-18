@@ -1,4 +1,8 @@
-.container{
+.canvas__container{
+    margin: auto;
+}
+
+.canvas{
     width: 600px;
     height: 600px;
     background-color: violet;
@@ -7,7 +11,7 @@
 }
 
 .cell{
-    outline: 1px solid rgb(0 0 0 / .05);
+    outline: 1px solid rgb(0 0 0 / .02);
     display: inline-block;
 }
 
