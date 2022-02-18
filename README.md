@@ -22,6 +22,10 @@ In this application you can:
 6. Your color is to dark or to bright? Fix it with the (un)innovating "Shading" and "Lighting" functions.
 7. Enjoy!!
 
+![Preview image](./assets/Images/Preview.png)
+
+
+
 ### Live site
 You can enjoy this software and create fine art at the [live site](https://laughing-pasteur-17ca00.netlify.app/)
 
@@ -30,12 +34,12 @@ Why not copy this repository to your machine, mess with the code and see your ch
 
 
 ## Known issues
-The pointer is always painting.
-
-If you have any button activated, changing the color you will use will not de-activate the button.
+- ~~The pointer is always painting~~.
+- If you have any button activated, changing the color you will use will not de-activate the button.
 
 ### Firefox
-If you choose a grid with the following sizes (7, 11, 17, and 19) there will be an overflow of the grid (This doesn't break the functionality of the canvas)
+- If you choose a grid with the following sizes (7, 11, 17, and 19) there will be an overflow of the grid (This doesn't break the functionality of the canvas)
+- After changing the size of the canvas, the size will go back to the default.
 
 
 ## Contact
